@@ -1,27 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
-import {Button} from 'reactstrap';
+import {Route} from 'react-router';
+import {Home} from "./Home";
+import {Test} from "./Test";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Button color="danger">Enter Page</Button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+            <Route path="/vis" component={Test}/>
+            <Route exact path="/" component={Home}/>
+        </div>
+    );
 }
 
 export default App;
