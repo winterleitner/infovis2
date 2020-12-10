@@ -1,4 +1,5 @@
 import React from 'react'
+import ClockLoader from 'react-spinners/ClockLoader'
 
 const Welcome = props => {
     // Loading text
@@ -6,7 +7,8 @@ const Welcome = props => {
         return (
             <div>
                 <h1>Welcome to the Diving Support System Visualization Page</h1>
-                <p>Please wait while the page is loading...</p>
+                <p>Please wait while the page is loading. This might take some time, since a large number of items are being parsed from CSV in real time.</p>
+                <ClockLoader css="margin: 0 auto;"/>
             </div>
         )
     console.log(props.data.slice(1).slice(-5))
