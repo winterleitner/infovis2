@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import logo from "./logo.svg";
 import { Link } from 'react-router-dom';
+import papa from 'papaparse'
 
-export const Home = () => {
+export const Home = (props) => {
+    console.log(props.data)
     return (
         <div className="App">
             <header className="App-header">
