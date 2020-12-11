@@ -25,10 +25,10 @@ const App = () => {
     }, [])
     return (
         <>
-            <Route exact path="/" render={() => <StartScreen data={data}/>}/>
+            <Route exact path="/" render={() => <StartScreen data={data} loading={loading}/>}/>
 
             <Layout>
-                <Route exact path="/welcome" render={() => <Welcome data={data} loading={loading}/>}/>
+                <Route exact path="/welcome" render={() => <Welcome data={data}/>}/>
                 <Route exact path="/vis" render={() => <Test data={data}/>}/>
             </Layout>
 
