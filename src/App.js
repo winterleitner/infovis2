@@ -7,18 +7,22 @@ import papa from "papaparse";
 import Layout from "./Layout";
 import Welcome from "./pages/Welcome";
 import moment from 'moment'
+import DepthTemperaturePage from "./pages/DepthTemperaturePage";
 
 const App = () => {
     const [data, setData] = useState([])
+    const [attributes, setAttributes] = useState([])
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         papa.parse("infovis2/SFBay.csv", {
             download: true,
             header: true,
+            dynamicTyping: true,
             complete: function (results, file) {
                 let parsed = results.data.map(r => {return {...r, 'TimeStamp': moment(r['TimeStamp']).toDate()}})
                 parsed.pop()
                 setData(parsed)
+                setAttributes(Object.keys(parsed[0]))
                 setLoading(false)
             }
         })
@@ -29,6 +33,7 @@ const App = () => {
 
             <Layout>
                 <Route exact path="/welcome" render={() => <Welcome data={data}/>}/>
+                <Route exact path="/dt" render={() => <DepthTemperaturePage data={data} attributes={attributes}/>}/>
                 <Route exact path="/vis" render={() => <Test data={data}/>}/>
             </Layout>
 

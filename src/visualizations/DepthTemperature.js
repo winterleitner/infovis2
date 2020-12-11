@@ -14,12 +14,10 @@ export const DepthTemperature = (props) => {
             .attr("x", (d, i) => i * 70)
             .attr("y", 0)
             .attr("width", 25)
-            .attr("height", (d, i) => d*10)
+            .attr("height", (d, i) => d['Temperature'])
             .attr("fill", "green");
         setGraphic(svg)
     },[])
-
-
     return (
         <div id={id}></div>
     )
