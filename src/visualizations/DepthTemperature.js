@@ -14,7 +14,7 @@ export const DepthTemperature = (props) => {
             .attr("x", (d, i) => i * 70)
             .attr("y", 0)
             .attr("width", 25)
-            .attr("height", (d, i) => d['Temperature'])
+            .attr("height", (d, i) => d['Depth'])
             .attr("fill", "green");
         setGraphic(svg)
     },[])
