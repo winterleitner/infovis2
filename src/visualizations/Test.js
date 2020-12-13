@@ -5,7 +5,10 @@ import idgen from "../utils/idgen";
 export const Test = (props) => {
     const [id] = useState(idgen());
     useEffect(() => {
-        const data = [12, 5, 6, 6, 9, 10];
+        const data = [{"Station.Number": 12, "Depth": 5}, {"Station.Number": 5, "Depth": 20}, {
+            "Station.Number": 5,
+            "Depth": 30
+        }];
         const svg = d3.select(`#${id}`).append("svg").attr("width", props.width).attr("height", props.height);
         svg.selectAll("rect")
             .data(data)
@@ -14,9 +17,17 @@ export const Test = (props) => {
             .attr("x", (d, i) => i * 70)
             .attr("y", 0)
             .attr("width", 25)
-            .attr("height", (d, i) => d*10)
+            .attr("height", (d, i) => d["Depth"] * 5)
             .attr("fill", "green");
-        },[])
+
+        svg.selectAll("text")
+            .data(data)
+            .enter()
+            .append("text")
+            .text((d) => d['Station.Number'])
+            .attr("x", (d, i) => i * 70)
+            .attr("y", (d, i) => (6 * d['Depth']) + 10)
+    }, [])
 
 
     return (

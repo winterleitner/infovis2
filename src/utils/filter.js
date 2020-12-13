@@ -14,7 +14,7 @@ class Filter {
         if (this.attribute == "TimeStamp") {
             return this.attribute + " " + this.comparator + " " + this.threshold.toLocaleDateString("de-DE");
         }
-        return this.attribute + " " + this.comparator + " " + this.threshold.toString() + "d";
+        return this.attribute + " " + this.comparator + " " + this.threshold.toString();
     }
 
     filter(data) {
