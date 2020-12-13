@@ -1,5 +1,6 @@
 import React, {useState, useRef} from 'react'
 import {DepthTemperature} from "../visualizations/DepthTemperature";
+import {DateTemperature} from "../visualizations/DateTemperature";
 import {Row, Col, Badge, Button, Input, Label} from "reactstrap";
 import Filter from "../utils/filter";
 
@@ -28,6 +29,7 @@ const DepthTemperaturePage = props => {
         <Row>
             <Col xs="8" className="visualization-panel">
                 <DepthTemperature data={filtered_data()}/>
+                <DateTemperature data={filtered_data()}/>
             </Col>
             <Col xs="4" className="control-panel">
                 <Row>
