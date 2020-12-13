@@ -31,7 +31,7 @@ const Layout = (props) => {
                             <NavLink href="#/dt">Depth-Temperature</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="#/vis">Vis</NavLink>
+                            <NavLink href="#/map">Map-Temperatures</NavLink>
                         </NavItem>
                     </Nav>
                     <UncontrolledDropdown navbar>
