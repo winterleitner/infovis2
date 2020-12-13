@@ -9,7 +9,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 2s alternate;
   }
 }
 
@@ -30,9 +30,15 @@
 
 @keyframes App-logo-spin {
   from {
-    transform: rotate(0deg);
+    transform: scale(0.3);
   }
   to {
-    transform: rotate(360deg);
+    transform: scale(0.7);
   }
+}
+
+.attribution {
+  position: fixed;
+  bottom: 10px;
+  font-size: 10pt;
 }

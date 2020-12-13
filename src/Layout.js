@@ -20,18 +20,18 @@ const Layout = (props) => {
     return (
         <div>
             <Navbar color="light" light expand="md">
-                <NavbarBrand href="/#/">Scuba Diving Support</NavbarBrand>
+                <NavbarBrand href="#/">Scuba Diving Support</NavbarBrand>
                 <NavbarToggler onClick={toggle}/>
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <NavLink href="/#/welcome">Home</NavLink>
+                            <NavLink href="#/welcome">Home</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/#/dt">Depth-Temperature</NavLink>
+                            <NavLink href="#/dt">Depth-Temperature</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/#/vis">Vis</NavLink>
+                            <NavLink href="#/vis">Vis</NavLink>
                         </NavItem>
                     </Nav>
                     <UncontrolledDropdown navbar>
