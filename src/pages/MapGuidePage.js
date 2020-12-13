@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import MapTemperature from "../visualizations/MapTemperature";
+import MapGuide from "../visualizations/MapGuide";
 import {Row, Col} from "reactstrap";
 import FilterComponent from "../filtering/FilterComponent";
 
-const MapTemperaturePage = props => {
+const MapGuidePage = props => {
     // holds list of filter functions
     const [filters, setFilters] = useState([])
     const filtered_data = () => {
@@ -26,7 +26,7 @@ const MapTemperaturePage = props => {
     return (
         <Row>
             <Col xs="8" className="visualization-panel">
-                <MapTemperature data={filtered_data()} notify={(data) => setMeasures(data)}/>
+                <MapGuide data={filtered_data()} notify={(data) => setMeasures(data)}/>
             </Col>
             <Col xs="4" className="control-panel">
                 <FilterComponent filters={filters} addFilter={addFilter} removeFilter={removeFilter} matchCount={filtered_data().length} attributes={props.attributes}/>
@@ -44,7 +44,7 @@ const MapTemperaturePage = props => {
                         {Object.keys(measures).map(k =>
                             <tr>
                                 <td>{k}</td>
-                                <td>{measures[k]}</td>
+                                <td>{measures[k].toString()}</td>
                             </tr>
                         )}
                         </tbody>
@@ -53,5 +53,5 @@ const MapTemperaturePage = props => {
             </Col>
         </Row>)
 }
-export default MapTemperaturePage
+export default MapGuidePage
 

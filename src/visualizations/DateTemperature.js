@@ -38,15 +38,9 @@ export const DateTemperature = (props) => {
             .padding([0.3])
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x))
+        ;
 
-        // x axis label
-        svg.append("text")
-            .attr("class", "x label")
-            .attr("text-anchor", "end")
-            .attr("x", width)
-            .attr("y", -20)
-            .text("Date");
 
         // y axis
         var y = d3.scaleLinear()
@@ -84,8 +78,9 @@ export const DateTemperature = (props) => {
         setGraphic(svg)
     }, [props.data])
     return (
-        <div>
-            <h3>Temperature over time</h3>
+        <div className="mt-5">
+            <h3>Temperature measurements over time</h3>
+            <small>Select only one station and depth for meaningful results!</small>
             <div id={id}></div>
         </div>
     )

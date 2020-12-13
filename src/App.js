@@ -8,7 +8,7 @@ import Layout from "./Layout";
 import Welcome from "./pages/Welcome";
 import moment from 'moment'
 import DepthTemperaturePage from "./pages/DepthTemperaturePage";
-import MapTemperaturePage from "./pages/MapTemperaturesPage";
+import MapGuidePage from "./pages/MapGuidePage";
 
 const App = () => {
     const [data, setData] = useState([])
@@ -35,7 +35,7 @@ const App = () => {
             <Layout>
                 <Route exact path="/welcome" render={() => <Welcome data={data}/>}/>
                 <Route exact path="/dt" render={() => <DepthTemperaturePage data={data} attributes={attributes}/>}/>
-                <Route exact path="/map" render={() => <MapTemperaturePage data={data} attributes={attributes}/>}/>
+                <Route exact path="/map" render={() => <MapGuidePage data={data} attributes={attributes}/>}/>
             </Layout>
 
         </>

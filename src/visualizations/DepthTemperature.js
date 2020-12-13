@@ -128,7 +128,7 @@ export const DepthTemperature = (props) => {
     }, [props.data])
     return (
         <div>
-            <h3>Temperature from low to high</h3>
+            <h3>Temperature averages by station and depth</h3>
             <div id={id}></div>
         </div>
     )

@@ -6,12 +6,18 @@ import papa from "papaparse";
 import moment from "moment";
 
 
-const MapTemperature = props => {
+const MapGuide = props => {
     const [id] = useState(idgen());
     const [stations, setStations] = useState([])
     const [selected, setSelected] = useState(null)
     const [preparedData, setPreparedData] = useState([])
 
+    const calculateScore = (data) => {
+        if (data['Temperature'] < 14) return false
+        if (data['Salinity'] > 28) return false
+        if (data['Optical.Backscatter'] > 6) return false
+        return true
+    }
 
     const prepareData = (data, coords) => {
         let stations = data.reduce(
@@ -25,9 +31,9 @@ const MapTemperature = props => {
             const entries = stations.get(s)
 
             const avgTemp = (entries.reduce((total, next) => total + next['Temperature'], 0) / entries.length).toFixed(1) + " °C"
-            const avgExtinction = (entries.reduce((total, next) => total + next['Measured.Extinction.Coefficient'], 0) / entries.length).toFixed(1)
-            const avgBackscatter = (entries.reduce((total, next) => total + next['Optical.Backscatter'], 0) / entries.length).toFixed(1)
-            const avgSalinity = (entries.reduce((total, next) => total + next['Salinity'], 0) / entries.length).toFixed(1)
+            const avgExtinction = (entries.reduce((total, next) => total + next['Measured.Extinction.Coefficient'], 0) / entries.length).toFixed(3)
+            const avgBackscatter = (entries.reduce((total, next) => total + next['Optical.Backscatter'], 0) / entries.length).toFixed(3)
+            const avgSalinity = (entries.reduce((total, next) => total + next['Salinity'], 0) / entries.length).toFixed(3)
             const maxDepth = entries.map(m => m['Depth']).reduce((a, b) => a > b ? a : b, 0) + "m"
 
             let station
@@ -35,7 +41,7 @@ const MapTemperature = props => {
             if (st.length > 0) {
                 station = st[0]
             }
-            else station = {"x": 0, "y": 0}
+            else station = {"x": -10, "y": -10}
 
             const res = {"Station.Number": s,
                 "x": station['x'],
@@ -46,6 +52,8 @@ const MapTemperature = props => {
                 "Salinity": avgSalinity,
                 "MaximumDepth": maxDepth
             }
+            const isGood = calculateScore(res)
+            res['Good.DivingSpot'] = isGood
             reducedData.push(res)
         }
         reducedData.sort((a, b) => (a['Station.Number'] > b['Station.Number']) ? 1 : -1);
@@ -96,21 +104,24 @@ const MapTemperature = props => {
             // add rectangular
             svg.append("circle")
                 .attr("id", "station-" + s['Station.Number'])
+                .attr("class", "station-circle")
                 .attr("cx", s['x'])
                 .attr("cy", s['y'])
                 .attr("r", "5")
                 //.on("click", setSelected(s['Station.Number']))
                 .on("click", () => notifyData(s['Station.Number']))
-                .attr("fill", "red")
+                .attr("fill", s['Good.DivingSpot'] ? "green" : "red")
         }
     }, [props.data, stations])
 
     return (
         <div>
-            <h3>Temperature visualized on a map</h3>
+            <h3>Diving Spot Guide</h3>
+            <small>Based on the values obtained by clicking the measurement point, diving spots are either categorized as good or bad. Good spots are green, bad spots are red!</small>
+            <br/><br/>
             <div id={id} style={{"background": "url(infovis2/bay.jpeg)"}}/>
         </div>
     )
 }
 
-export default MapTemperature
+export default MapGuide
