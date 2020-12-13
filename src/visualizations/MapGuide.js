@@ -119,7 +119,7 @@ const MapGuide = props => {
             <h3>Diving Spot Guide</h3>
             <small>Based on the values obtained by clicking the measurement point, diving spots are either categorized as good or bad. Good spots are green, bad spots are red!</small>
             <br/><br/>
-            <div id={id} style={{"background": "url(infovis2/bay.jpeg)"}}/>
+            <div id={id} style={{"background": "url(/infovis2/bay.jpeg)"}}/>
         </div>
     )
 }
