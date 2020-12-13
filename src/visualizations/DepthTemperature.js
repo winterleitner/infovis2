@@ -42,7 +42,7 @@ export const DepthTemperature = (props) => {
         const data = prepareData(props.data)
         const depths = data.map(d => d['Measures']).reduce((a, b) => a.concat(b), []).map(m => m['Depth'])
         const maxDepth = depths.reduce((a, b) => a > b ? a : b, 0)
-        console.log("Data", maxDepth)
+        console.log("Data", data)
 
         // set the dimensions and margins of the graph
         var margin = {top: 40, right: 20, bottom: 20, left: 40},
